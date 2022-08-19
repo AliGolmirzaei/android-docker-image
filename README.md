@@ -43,4 +43,5 @@ release:
       --priority low
 ```
 
-A Gitlab CICD variable with type `file` used with named `KEYSTORE` to sign the apk. You might have your own signing configuration.
+A Gitlab CICD variable named `KEYSTORE` is used to sign the APK. Content of variable is base64 encode of the keystore file. You can use your own signing configuration.
+
