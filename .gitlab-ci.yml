@@ -1,0 +1,19 @@
+image: docker:19.03.13
+variables:
+    # Create the certificates inside this directory for both the server
+    # and client. The certificates used by the client will be created in
+    # /certs/client so we only need to share this directory with the
+    # volume mount in `config.toml`.
+    DOCKER_TLS_CERTDIR: "/certs"
+    CONTAINER_IMAGE: $CI_REGISTRY_IMAGE:latest
+
+stages:
+    - build
+
+build_docker_image: 
+    stage: build    
+    before_script: 
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    script:
+        - docker build --pull -t $CONTAINER_IMAGE .
+        - docker push $CONTAINER_IMAGE
