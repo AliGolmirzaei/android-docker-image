@@ -1,8 +1,8 @@
 # Android docker image
 
-This repository consist of scripts needed to build a docker image with an android emulator available for instrument tests. Right now a `.gitlab-ci.yml` is provided to build this image in Gitlab CICD. 
+This repository consists of scripts needed to build a docker image with an android emulator available for instrument tests. Right now a `.gitlab-ci.yml` is provided to build this image in Gitlab CICD. 
 
-If you are also using Gitlab CICD you can use following `.gitlab-ci.yml` to use the image build.
+If you are also using Gitlab CICD you can use the following `.gitlab-ci.yml` to use the image build.
 ```
 image: {path to your built image}
 
@@ -45,4 +45,4 @@ release:
       --priority low
 ```
 
-A Gitlab CICD variable with type used as `KEYSTORE` to sign the apk. You might have your own signing configuration.
+A Gitlab CICD variable with type `file` used with named `KEYSTORE` to sign the apk. You might have your own signing configuration.
