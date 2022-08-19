@@ -33,8 +33,6 @@ instrumentTest:
 
 release:
   stage: release
-  rules:
-    - if: $CI_COMMIT_BRANCH == "develop"
   script:
     - echo $KEYSTORE | base64 -d > my.keystore
     - ./gradlew assembleRelease
