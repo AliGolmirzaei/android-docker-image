@@ -37,11 +37,11 @@ release:
     - echo $KEYSTORE | base64 -d > my.keystore
     - ./gradlew assembleRelease
       -Pandroid.injected.signing.store.file=$(pwd)/my.keystore
-      -Pandroid.injected.signing.store.password=android
-      -Pandroid.injected.signing.key.alias=androiddebugkey
-      -Pandroid.injected.signing.key.password=android
+      -Pandroid.injected.signing.store.password=$KEYSTORE_PASSWORD
+      -Pandroid.injected.signing.key.alias=$KEY_ALIAS
+      -Pandroid.injected.signing.key.password=$KEY_PASSWORD
       --priority low
 ```
 
-A Gitlab CICD variable named `KEYSTORE` is used to sign the APK. Content of variable is base64 encode of the keystore file. You can use your own signing configuration.
+A Gitlab CICD variable named `KEYSTORE` is used to hold the signing key for sign the APK. Content of variable is base64 encode of the keystore file. You can use your own signing configuration. Also to improve security we used `Masked` and `Protected` variables to store the other credentials needed.
 
