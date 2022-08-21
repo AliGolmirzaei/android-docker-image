@@ -14,9 +14,12 @@ RUN apt-get update \
         wget \
         unzip \
         openjdk-11-jdk \
+		python3 \
+        python3-pip \
     && apt-get clean \
     && apt-get autoclean
 
+RUN pip install python-gitlab google-api-python-client google-auth-httplib2 google-auth-oauthlib
 
 RUN wget --quiet --output-document=cmdtools.zip https://dl.google.com/android/repository/commandlinetools-linux-${CMD_TOOL_VERSION}_latest.zip \
     && unzip -q -d cmdtools cmdtools.zip \
@@ -37,4 +40,6 @@ RUN echo no | avdmanager create avd -f -n testAVD -k "system-images;android-${AN
 
 COPY ./start_emulator.sh /app/start_emulator.sh
 RUN chmod +x /app/start_emulator.sh
+
+COPY ./publish.py /app/publish.py
 
